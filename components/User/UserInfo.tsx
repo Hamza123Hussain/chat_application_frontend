@@ -4,7 +4,7 @@ import React from 'react'
 
 const UserInfo = () => {
   return (
-    <div className=" flex justify-between">
+    <div className=" flex justify-between bg-transparent text-black border-b-2 shadow-sm shadow-black border-black p-2">
       <div className=" flex gap-2 items-center ">
         {' '}
         <Image
