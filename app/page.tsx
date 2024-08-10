@@ -1,7 +1,7 @@
+'use client'
 import ChatList from '@/components/Chat/ChatList'
 import UserDetail from '@/components/Chat/UserDetail'
 import UserList from '@/components/Chat/UserList'
-import Image from 'next/image'
 
 export default function Home() {
   return (
