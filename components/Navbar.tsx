@@ -3,7 +3,7 @@ import React from 'react'
 
 const Navbar = () => {
   return (
-    <div className="p-2 flex justify-between items-center bg-green-300 shadow-lg rounded-b-md">
+    <div className="p-2 flex justify-between items-center bg-green-300 shadow-lg ">
       <div className="flex gap-3 items-center">
         <Image
           src={'/chat.png'}
