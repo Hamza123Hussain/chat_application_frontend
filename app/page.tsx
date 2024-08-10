@@ -12,7 +12,7 @@ export default function Home() {
       <div className=" bg-slate-200 w-6/12 md:w-8/12">
         <ChatList />
       </div>
-      <div className=" bg-slate-900 w-1/3 hidden md:w-2/12">
+      <div className=" bg-slate-500 w-1/12  md:w-2/12">
         <UserDetail />
       </div>
     </div>
