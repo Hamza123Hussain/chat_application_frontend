@@ -26,7 +26,7 @@ const UserList = () => {
           height={25}
           className=" rounded-full"
         />
-        <h6 className=" text-[10px] sm:text-sm">Hamza Hussain</h6>
+        <h6 className=" text-[12px]">Hamza Hussain</h6>
       </div>
     </div>
   )
