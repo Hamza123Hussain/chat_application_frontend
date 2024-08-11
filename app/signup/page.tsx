@@ -1,7 +1,8 @@
 'use client'
-import { auth, db } from '@/utils/FirebaseConfig'
+import { auth, db, storage } from '@/utils/FirebaseConfig'
 import { createUserWithEmailAndPassword, UserCredential } from 'firebase/auth'
 import { doc, setDoc } from 'firebase/firestore'
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 import { useRouter } from 'next/navigation'
 import React, { useState, ChangeEvent } from 'react'
 
@@ -22,7 +23,6 @@ const SignUp: React.FC = () => {
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputVal((prev) => ({ ...prev, [e.target.name]: e.target.value }))
-    console.log(inputVal)
   }
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -41,16 +41,33 @@ const SignUp: React.FC = () => {
           inputVal.email,
           inputVal.password
         )
+
       if (userCredential) {
+        let fileURL = ''
+
+        // Upload the file to Firebase Storage
+        if (inputVal.File) {
+          const fileRef = ref(
+            storage,
+            `users/${userCredential.user.uid}/${inputVal.File.name}`
+          )
+          await uploadBytes(fileRef, inputVal.File)
+          fileURL = await getDownloadURL(fileRef)
+        }
+
+        // Save the user data to Firestore
         await setDoc(doc(db, 'Users', userCredential.user.uid), {
           Name: inputVal.Name,
           Email: inputVal.email,
           id: userCredential.user.uid,
           Blocked: [],
+          FileURL: fileURL, // Store the download URL in Firestore
         })
+
         await setDoc(doc(db, 'Chats', userCredential.user.uid), {
           Chats: [],
         })
+
         alert('User registered successfully')
       }
     } catch (error) {
