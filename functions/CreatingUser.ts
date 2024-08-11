@@ -3,6 +3,7 @@ import { InputValues } from '@/utils/SignUpInterface'
 import { createUserWithEmailAndPassword, UserCredential } from 'firebase/auth'
 import { doc, setDoc } from 'firebase/firestore'
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
+import { showCustomToast } from './CustomToast'
 export const handleSubmit = async (inputVal: InputValues) => {
   try {
     const userCredential: UserCredential = await createUserWithEmailAndPassword(
@@ -37,7 +38,7 @@ export const handleSubmit = async (inputVal: InputValues) => {
         Chats: [],
       })
 
-      alert('User registered successfully')
+      showCustomToast()
     }
   } catch (error) {
     console.error('Error during registration:', error)
