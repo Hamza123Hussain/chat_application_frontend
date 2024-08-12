@@ -7,12 +7,7 @@ import React, {
   useEffect,
 } from 'react'
 
-type UserContextType = {
-  userID: string
-  setID: React.Dispatch<React.SetStateAction<string>>
-}
-
-const UserContext = createContext<UserContextType | null>(null)
+const UserContext = createContext<any>(null)
 
 export const ContextProvider = ({ children }: { children: ReactNode }) => {
   const [userID, setID] = useState<string>(() => {
@@ -20,7 +15,7 @@ export const ContextProvider = ({ children }: { children: ReactNode }) => {
     const storedID = localStorage.getItem('userID')
     return storedID || '' // Default to an empty string if no userID is found
   })
-
+  const [searchUsers, setusers] = useState([])
   useEffect(() => {
     // Store userID in localStorage whenever it changes
     if (userID) {
@@ -31,7 +26,7 @@ export const ContextProvider = ({ children }: { children: ReactNode }) => {
   }, [userID])
 
   return (
-    <UserContext.Provider value={{ userID, setID }}>
+    <UserContext.Provider value={{ userID, setID, searchUsers, setusers }}>
       {children}
     </UserContext.Provider>
   )
