@@ -1,16 +1,14 @@
-import { auth } from '@/utils/FirebaseConfig'
-import { UserCredential } from 'firebase/auth'
-import { signInWithEmailAndPassword } from 'firebase/auth/web-extension'
-
+import axios from 'axios'
 export const HandleLogin = async (inputVal: any, Router: any) => {
   try {
-    const userCredential: UserCredential = await signInWithEmailAndPassword(
-      auth,
-      inputVal.email,
-      inputVal.password
+    const Response = await axios.get(
+      'http://localhost:5000/api/User/Login',
+      inputVal
     )
-    if (userCredential) {
+    if (Response.status === 200) {
       Router.push('/')
     }
-  } catch (error) {}
+  } catch (error) {
+    console.log('ERROR IN API ', error)
+  }
 }
