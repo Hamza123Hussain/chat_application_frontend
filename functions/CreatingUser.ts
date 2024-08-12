@@ -1,15 +1,28 @@
 import { InputValues } from '@/utils/SignUpInterface'
 import { showCustomToast } from './CustomToast'
 import axios from 'axios'
+
 export const handleSubmit = async (inputVal: InputValues) => {
   try {
-    const Response = await axios.post(
+    // Create a FormData object
+    const formData = new FormData()
+
+    // Append the file if it exists
+    if (inputVal.File) {
+      formData.append('File', inputVal.File)
+    }
+
+    // Append other input values
+    formData.append('email', inputVal.email)
+    formData.append('password', inputVal.password)
+    formData.append('Name', inputVal.Name)
+
+    const response = await axios.post(
       'http://localhost:5000/api/User/Register',
-      {
-        inputVal,
-      }
+      formData
     )
-    if (Response.status == 200) {
+
+    if (response.status === 200) {
       showCustomToast()
     }
   } catch (error) {
