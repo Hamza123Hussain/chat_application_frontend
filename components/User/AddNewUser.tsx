@@ -9,9 +9,11 @@ import {
 } from '@/components/ui/dialog'
 import { SquarePlus } from 'lucide-react'
 import SearchBar from '../SearchBar'
-import Image from 'next/image'
+import { useUserContext } from '@/utils/Context'
+import UserFound from './UserFound'
 
 const AddNewUser = () => {
+  const { searchUsers } = useUserContext()
   return (
     <div className=" bg-transparent">
       <Dialog>
@@ -25,20 +27,16 @@ const AddNewUser = () => {
             <DialogDescription>
               <div className=" flex flex-col">
                 <SearchBar />
-                <div className=" flex gap-2 items-center justify-between ">
-                  <div className="flex gap-2 items-center">
-                    <Image
-                      src={'/User.png'}
-                      alt="USER"
-                      width={25}
-                      height={25}
-                      className=" rounded-full"
-                    />
-                    <h6 className=" text-[10px] sm:text-sm">Hamza Hussain</h6>
-                  </div>
-                  <button className=" bg-green-500 px-5 py-2 rounded-lg text-white">
-                    Add User
-                  </button>
+                <div className=" flex flex-col">
+                  {searchUsers.length > 0
+                    ? searchUsers?.map((element: any, index: number) => {
+                        return (
+                          <div key={index}>
+                            <UserFound User={element} />
+                          </div>
+                        )
+                      })
+                    : ''}
                 </div>
               </div>
             </DialogDescription>
