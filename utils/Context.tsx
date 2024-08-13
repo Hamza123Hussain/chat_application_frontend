@@ -10,6 +10,7 @@ import React, {
 const UserContext = createContext<any>(null)
 
 export const ContextProvider = ({ children }: { children: ReactNode }) => {
+  const [chatID, setCHATID] = useState('')
   const [chatData, setChatData] = useState<any[]>(
     []
     //   () => {
@@ -41,7 +42,16 @@ export const ContextProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <UserContext.Provider
-      value={{ userID, setID, searchUsers, setusers, chatData, setChatData }}
+      value={{
+        userID,
+        setID,
+        searchUsers,
+        setusers,
+        chatData,
+        setChatData,
+        chatID,
+        setCHATID,
+      }}
     >
       {children}
     </UserContext.Provider>
