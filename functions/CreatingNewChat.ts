@@ -7,7 +7,8 @@ export const MakeNewChat = async (UserID: string, CurrentUserID: string) => {
       CurrentUserID,
     })
     if (Response.status == 200) {
-      console.log(Response.data)
+      //   console.log(Response.data)
+      return Response.data
     }
   } catch (error) {
     console.log('error in api', error)
