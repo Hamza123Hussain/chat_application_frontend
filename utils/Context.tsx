@@ -10,11 +10,14 @@ import React, {
 const UserContext = createContext<any>(null)
 
 export const ContextProvider = ({ children }: { children: ReactNode }) => {
-  const [chatData, setChatData] = useState<any[]>(() => {
-    // Load chatData from localStorage, if available
-    const storedChatData = localStorage.getItem('chatData')
-    return storedChatData ? JSON.parse(storedChatData) : [] // Parse JSON or default to an empty array
-  })
+  const [chatData, setChatData] = useState<any[]>(
+    []
+    //   () => {
+    //   // Load chatData from localStorage, if available
+    //   const storedChatData = localStorage.getItem('chatData')
+    //   return storedChatData ? JSON.parse(storedChatData) : [] // Parse JSON or default to an empty array
+    // }
+  )
   const [userID, setID] = useState<string>(() => {
     // Retrieve userID from localStorage, if available
     const storedID = localStorage.getItem('userID')
