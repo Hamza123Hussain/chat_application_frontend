@@ -1,12 +1,15 @@
 import { MakeNewChat } from '@/functions/CreatingNewChat'
 import { useUserContext } from '@/utils/Context'
-import React from 'react'
+import React, { useState } from 'react'
 
 const UserFound = ({ User }: { User: any }) => {
   const { userID } = useUserContext()
+  const [NewUsers, setUsers] = useState([])
   const AddUser = async () => {
     try {
       const Data = await MakeNewChat(User.id, userID)
+      setUsers((prev: any) => prev.push(Data))
+      console.log('USERS : ', NewUsers)
     } catch (error) {
       console.log(error)
     }
