@@ -7,6 +7,7 @@ export const GetChat = async (ChatID: string) => {
     )
     if (Response.status === 200) {
       console.log('CHAT OF USER', Response.data)
+      return Response.data
     }
   } catch (error) {}
 }
