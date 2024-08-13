@@ -6,8 +6,8 @@ import { connectToWebSocket } from '@/functions/CreatingChatList'
 import { useUserContext } from '@/utils/Context'
 
 const UserList = () => {
-  const { userID } = useUserContext()
-  const [chatData, setChatData] = useState<any[]>([]) // State to hold the chat data
+  const { userID, chatData, setChatData } = useUserContext()
+
   const socketRef = useRef<WebSocket | null>(null)
 
   useEffect(() => {
@@ -21,7 +21,7 @@ const UserList = () => {
 
         // Create a new WebSocket connection and store it in the ref
         const newSocket = connectToWebSocket(userID, (data: any) => {
-          setChatData((prevData) => [...prevData, data]) // Update state with new data
+          setChatData((prevData: any) => [...prevData, data]) // Update state with new data
         })
 
         socketRef.current = newSocket
@@ -50,7 +50,7 @@ const UserList = () => {
 
       {/* Render the received chat data */}
       <div className="mt-4">
-        {chatData.map((item, index) => (
+        {chatData.map((item: any, index: number) => (
           <div key={index} className=" text-white flex gap-2 items-center">
             <img
               width={30}
