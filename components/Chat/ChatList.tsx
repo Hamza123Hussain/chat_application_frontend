@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import UserInfo from '../User/UserInfo'
 import { ChatMessage } from '../Messages'
 import { Camera, Image, Mic } from 'lucide-react'
+import { useUserContext } from '@/utils/Context'
+import { GetChat } from '@/functions/GettingAChat'
 const messages = [
   { text: 'Hi there!', isUser: false },
   { text: 'Hello!', isUser: true },
@@ -9,6 +11,19 @@ const messages = [
   { text: 'I’m good, thanks!', isUser: true },
 ]
 const ChatList = () => {
+  const { chatID } = useUserContext()
+
+  const GETCHAT = async () => {
+    try {
+      const Data = await GetChat(chatID)
+      console.log('CHAT DATA ', Data)
+    } catch (error) {
+      console.log('GOT ERROR', error)
+    }
+  }
+  useEffect(() => {
+    GETCHAT()
+  }, [chatID])
   const [messageinput, setmessageinput] = useState('')
   return (
     <div className=" flex flex-col justify-between ">
