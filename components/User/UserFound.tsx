@@ -1,6 +1,16 @@
+import { MakeNewChat } from '@/functions/CreatingNewChat'
+import { useUserContext } from '@/utils/Context'
 import React from 'react'
 
 const UserFound = ({ User }: { User: any }) => {
+  const { userID } = useUserContext()
+  const AddUser = async () => {
+    try {
+      const Data = await MakeNewChat(User.id, userID)
+    } catch (error) {
+      console.log(error)
+    }
+  }
   return (
     <div className=" flex gap-2 items-center justify-between ">
       <div className="flex gap-2 items-center">
@@ -13,7 +23,10 @@ const UserFound = ({ User }: { User: any }) => {
         />
         <h6 className=" text-[10px] sm:text-sm">{User.Name}</h6>
       </div>
-      <button className=" bg-green-500 px-5 py-2 rounded-lg text-white">
+      <button
+        onClick={AddUser}
+        className=" bg-green-500 px-5 py-2 rounded-lg text-white"
+      >
         Add User
       </button>
     </div>
