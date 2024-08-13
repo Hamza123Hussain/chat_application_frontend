@@ -10,8 +10,12 @@ const UserList = () => {
   useEffect(() => {
     // Function to handle creating a new chat and connecting to the WebSocket
     const initializeChat = async () => {
-      // Then connect to the WebSocket to listen for updates
-      connectToWebSocket(userID)
+      if (userID) {
+        // Then connect to the WebSocket to listen for updates
+        connectToWebSocket(userID)
+      } else {
+        console.log('USER NOT LOGGED IN')
+      }
     }
 
     // Call the initialization function when the component mounts
