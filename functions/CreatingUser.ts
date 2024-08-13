@@ -4,24 +4,18 @@ import axios from 'axios'
 
 export const handleSubmit = async (inputVal: InputValues) => {
   try {
-    // Create a FormData object
     const formData = new FormData()
-
-    // Append the file if it exists
     if (inputVal.File) {
       formData.append('File', inputVal.File)
     }
-    // Append other input values
     formData.append('email', inputVal.email)
     formData.append('password', inputVal.password)
     formData.append('Name', inputVal.Name)
 
-    //Content-Type header to multipart/form-data AUTOMATICALLY SET BY FORMDATA
     const response = await axios.post(
       'http://localhost:5000/api/User/Register',
       formData
     )
-
     if (response.status === 200) {
       showCustomToast()
     }
