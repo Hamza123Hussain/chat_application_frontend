@@ -4,6 +4,7 @@ import SearchBar from '../SearchBar'
 import UserImageandName from '../User/UserImageandName'
 import { connectToWebSocket } from '@/functions/CreatingChatList'
 import { useUserContext } from '@/utils/Context'
+import { GetChat } from '@/functions/GettingAChat'
 
 const UserList = () => {
   const { userID, chatData, setChatData } = useUserContext()
@@ -41,6 +42,15 @@ const UserList = () => {
   }, [userID]) // The effect will re-run if the userID changes
 
   console.log('CHATS', chatData)
+
+  const GETCHAT = async (ChatID: string) => {
+    try {
+      const Data = await GetChat(ChatID)
+    } catch (error) {
+      console.log('GOT ERROR', error)
+    }
+  }
+
   return (
     <div className="p-2 flex flex-col">
       <div className="flex gap-2 items-center">
@@ -51,7 +61,11 @@ const UserList = () => {
       {/* Render the received chat data */}
       <div className="mt-4">
         {chatData.map((item: any, index: number) => (
-          <div key={index} className=" text-white flex gap-2 items-center">
+          <div
+            key={index}
+            onClick={() => GETCHAT(item?.chatData[0].chatID)}
+            className=" text-white flex gap-2 items-center hover:bg-gray-300 rounded-lg"
+          >
             <img
               width={30}
               height={30}
