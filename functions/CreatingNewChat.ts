@@ -1,16 +1,18 @@
 import axios from 'axios'
 
-export const MakeNewChat = async (UserID: string, CurrentUserID: string) => {
+export const MakeNewChat = async (ChatID: string, CurrentChatID: string) => {
   try {
     const Response = await axios.post('http://localhost:5000/api/Chats', {
-      UserID,
-      CurrentUserID,
+      ChatID,
+      CurrentChatID,
     })
-    if (Response.status == 200) {
-      //   console.log(Response.data)
+    if (Response.status === 200) {
       return Response.data
     }
-  } catch (error) {
-    console.log('error in api', error)
+  } catch (error: any) {
+    console.error('Error in API call:', error)
+    if (error.response) {
+      console.error('Response data:', error.response.data)
+    }
   }
 }
