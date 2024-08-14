@@ -8,12 +8,15 @@ const UserFound = ({ User }: { User: any }) => {
   const AddUser = async () => {
     try {
       const Data = await MakeNewChat(User.id, userID)
-      setUsers((prev: any) => prev.push(Data))
+
+      console.log('DATA HERE', Data)
+      // setUsers((prev: any) => prev.push(Data))
       console.log('USERS : ', NewUsers)
     } catch (error) {
       console.log(error)
     }
   }
+  console.log(`IDSSS : ${userID}&&&&&&${User.id}`)
   return (
     <div className=" flex gap-2 items-center justify-between ">
       <div className="flex gap-2 items-center">
