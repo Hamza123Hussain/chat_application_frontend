@@ -47,7 +47,7 @@ const UserList = () => {
 
       {/* Render the received chat data */}
       <div className="mt-4">
-        {chatData.map((item: any, index: number) => (
+        {/* {chatData.map((item: any, index: number) => (
           <div
             key={index}
             onClick={() => setCHATID(item?.chatData[0].chatID)}
@@ -62,7 +62,7 @@ const UserList = () => {
             />
             <p>{item?.chatData[0].user?.Name}</p>{' '}
           </div>
-        ))}
+        ))} */}
       </div>
     </div>
   )
