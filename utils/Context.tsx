@@ -6,21 +6,16 @@ import React, {
   useContext,
   useEffect,
 } from 'react'
-
 const UserContext = createContext<any>(null)
 export const ContextProvider = ({ children }: { children: ReactNode }) => {
   const [Flag, setFlag] = useState(false)
   const [chatID, setCHATID] = useState('')
-
   const [userID, setID] = useState<string>(() => {
-    // Retrieve userID from localStorage, if available
     const storedID = localStorage.getItem('userID')
     return storedID || '' // Default to an empty string if no userID is found
   })
   const [searchUsers, setusers] = useState([])
-
   useEffect(() => {
-    // Store userID in localStorage whenever it changes
     if (userID) {
       localStorage.setItem('userID', userID)
     } else {
@@ -44,7 +39,6 @@ export const ContextProvider = ({ children }: { children: ReactNode }) => {
     </UserContext.Provider>
   )
 }
-
 export const useUserContext = () => {
   const context = useContext(UserContext)
   if (!context) {
