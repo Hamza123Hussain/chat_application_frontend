@@ -4,7 +4,7 @@ import axios from 'axios'
 export const fetchAndHandleUserDetails = async (UserId: string) => {
   try {
     const Response = await axios.get(
-      `http://localhost:5000/api/GetUser/?userId=${UserId}`
+      `http://localhost:5000/api/User/GetUser?userId=${UserId}`
     )
     if (Response.status === 200) {
       return Response.data

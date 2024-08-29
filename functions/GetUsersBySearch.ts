@@ -2,9 +2,12 @@ import axios from 'axios'
 
 export const Getusers = async (name: string) => {
   try {
-    const response = await axios.post('http://localhost:5000/api/Search/', {
-      name,
-    })
+    const response = await axios.get(
+      'http://localhost:5000/api/User/SearchUser',
+      {
+        params: { name },
+      }
+    )
 
     if (response.status === 200) {
       console.log('DATA FROOM API', response.data)

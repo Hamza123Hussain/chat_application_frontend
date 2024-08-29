@@ -1,29 +1,20 @@
-// functions/CreatingChatList.ts
+// src/functions/CreatingChatList.js
+import { io } from 'socket.io-client'
 
-export const connectToWebSocket = (
-  userId: string,
-  onDataReceived: (data: any) => void
-): WebSocket => {
-  const socket = new WebSocket('ws://localhost:5000')
+// URL of your Socket.IO server
+const SOCKET_SERVER_URL = 'http://localhost:PORT' // Replace PORT with your server port
 
-  socket.onopen = () => {
-    console.log('Connected to WebSocket server')
-    socket.send(JSON.stringify({ userId }))
-  }
+export const connectToWebSocket = (userId: string, onChatUpdate: any) => {
+  // Establish a WebSocket connection
+  const socket = io(SOCKET_SERVER_URL)
 
-  socket.onmessage = (event) => {
-    const data = JSON.parse(event.data)
-    console.log('Received chat data:', data)
-    onDataReceived(data)
-  }
+  // Emit the UserAdded event with the userId
+  socket.emit('UserAdded', userId)
 
-  socket.onclose = () => {
-    console.log('WebSocket connection closed')
-  }
-
-  socket.onerror = (error) => {
-    console.error('WebSocket error:', error)
-  }
+  // Set up a listener for chat updates
+  socket.on('chatUpdate', (chatData) => {
+    onChatUpdate(chatData) // Call the callback function with the received chat data
+  })
 
   return socket
 }

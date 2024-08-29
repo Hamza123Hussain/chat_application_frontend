@@ -1,7 +1,7 @@
 import axios from 'axios'
 export const HandleLogin = async (inputVal: any) => {
   try {
-    const Response = await axios.post('http://localhost:5000/api/User/Login', {
+    const Response = await axios.post('http://localhost:5000/api/Auth/Login', {
       inputVal,
     })
     if (Response.status === 200) {
