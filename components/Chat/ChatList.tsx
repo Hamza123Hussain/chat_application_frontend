@@ -11,7 +11,7 @@ export default function ChatList() {
     if (messagesEndRef.current) {
       messagesEndRef.current.scrollIntoView({ behavior: 'smooth' })
     }
-  }, [])
+  }, [messages])
   useEffect(() => {
     const socket = io('http://localhost:5000')
     socket.emit('Chat', 'ezisEbOzjcS1aFzX21Tp')
