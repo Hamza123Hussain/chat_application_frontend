@@ -1,15 +1,19 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState } from 'react'
 import AddNewUser from '../User/AddNewUser'
 import SearchBar from '../SearchBar'
 import { useUserContext } from '@/utils/Context'
 import { io } from 'socket.io-client'
+import { CHATDAT } from '@/utils/ChatDataInterface'
+import UserListCard from '../User/UserListCard'
 const UserList: React.FC = () => {
   const { userID, Flag } = useUserContext()
+  const [chatData, setChatData] = useState<CHATDAT[]>([])
   useEffect(() => {
     const socket = io('http://localhost:5000')
     socket.emit('UserList', userID)
     socket.on('UserListReceived', (data: any) => {
       console.log('Received data from server:', data)
+      setChatData(data)
     })
     return () => {
       if (socket) {
@@ -23,27 +27,12 @@ const UserList: React.FC = () => {
         <SearchBar />
         <AddNewUser />
       </div>
-      {/* Render the received chat data */}
       <div className="mt-4">
-        {/* {chatData.map((item, index) => (
-          <div
-            key={index}
-            onClick={() => setCHATID(item.chatID)}
-            className="text-white flex gap-2 items-center hover:bg-gray-300 rounded-lg"
-          >
-            <img
-              width={30}
-              height={30}
-              className="rounded-full"
-              src={item.user.FileURL}
-              alt={item.user.Name}
-            />
-            <p>{item.user.Name}</p>
-          </div>
-        ))} */}
+        {chatData.map((User) => (
+          <UserListCard User={User} key={User.user.id} />
+        ))}
       </div>
     </div>
   )
 }
-
 export default UserList
