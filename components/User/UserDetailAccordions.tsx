@@ -5,8 +5,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion'
-import Image from 'next/image'
-import { Download } from 'lucide-react'
 import AccordionImage from './AccordionImage'
 
 const UserDetailAccordions = ({ Name }: { Name: string }) => {
