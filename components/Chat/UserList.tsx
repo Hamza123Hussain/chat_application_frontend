@@ -1,68 +1,46 @@
 import React, { useEffect, useState, useRef } from 'react'
 import AddNewUser from '../User/AddNewUser'
 import SearchBar from '../SearchBar'
-import { connectToWebSocket } from '@/functions/CreatingChatList'
 import { useUserContext } from '@/utils/Context'
-
-const UserList = () => {
-  const { userID, chatData, setChatData, setCHATID } = useUserContext()
-  const socketRef = useRef<WebSocket | null>(null)
+import { io } from 'socket.io-client'
+const UserList: React.FC = () => {
+  const { userID, Flag } = useUserContext()
   useEffect(() => {
-    // Function to handle creating a new chat and connecting to the WebSocket
-    const initializeChat = async () => {
-      if (userID) {
-        // Close the existing WebSocket connection if it exists
-        if (socketRef.current) {
-          socketRef.current.close()
-        }
-
-        // Create a new WebSocket connection and store it in the ref
-        const newSocket = connectToWebSocket(userID, (data: any) => {
-          setChatData((prevData: any) => [...prevData, data]) // Update state with new data
-        })
-
-        socketRef.current = newSocket
-      } else {
-        console.log('USER NOT LOGGED IN')
-      }
-    }
-
-    initializeChat()
-
-    // Cleanup function to close the WebSocket connection when the component unmounts or userID changes
+    const socket = io('http://localhost:5000')
+    socket.emit('UserList', userID)
+    socket.on('UserListReceived', (data: any) => {
+      console.log('Received data from server:', data)
+    })
     return () => {
-      if (socketRef.current) {
-        socketRef.current.close()
+      if (socket) {
+        socket.disconnect()
       }
     }
-  }, [userID]) // The effect will re-run if the userID changes
-
-  console.log('CHATS', chatData)
+  }, [userID, Flag])
   return (
     <div className="p-2 flex flex-col">
       <div className="flex gap-2 items-center">
         <SearchBar />
         <AddNewUser />
       </div>
-
       {/* Render the received chat data */}
       <div className="mt-4">
-        {chatData.map((item: any, index: number) => (
+        {/* {chatData.map((item, index) => (
           <div
             key={index}
-            onClick={() => setCHATID(item?.chatData[0].chatID)}
-            className=" text-white flex gap-2 items-center hover:bg-gray-300 rounded-lg"
+            onClick={() => setCHATID(item.chatID)}
+            className="text-white flex gap-2 items-center hover:bg-gray-300 rounded-lg"
           >
             <img
               width={30}
               height={30}
-              className=" rounded-full"
-              src={item?.chatData[0].user?.FileURL}
-              alt={item?.chatData[0].user?.Name}
+              className="rounded-full"
+              src={item.user.FileURL}
+              alt={item.user.Name}
             />
-            <p>{item?.chatData[0].user?.Name}</p>{' '}
+            <p>{item.user.Name}</p>
           </div>
-        ))}
+        ))} */}
       </div>
     </div>
   )
