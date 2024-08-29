@@ -2,9 +2,9 @@ import { useState, useEffect, useRef } from 'react'
 import { FiImage, FiCamera, FiMic } from 'react-icons/fi'
 import { ChatMessage } from '../Messages'
 import { io } from 'socket.io-client'
-import { useUserContext } from '@/utils/Context'
+import { Message } from '@/utils/MessageInterface'
 export default function ChatList() {
-  const [messages, setmessage] = useState([])
+  const [messages, setmessage] = useState<Message[]>([])
   const [messageInput, setMessageInput] = useState('')
   const messagesEndRef = useRef<HTMLDivElement | null>(null)
   useEffect(() => {
@@ -16,7 +16,8 @@ export default function ChatList() {
     const socket = io('http://localhost:5000')
     socket.emit('Chat', 'ezisEbOzjcS1aFzX21Tp')
     socket.on('ChatData', (data) => {
-      console.log('Received data from server:', data)
+      console.log('Received data from server:', data.messages)
+      setmessage(data.messages)
     })
     return () => {
       if (socket) {
@@ -31,9 +32,9 @@ export default function ChatList() {
         className="flex-1 overflow-y-auto p-4 space-y-4"
         style={{ maxHeight: 'calc(100vh - 160px)' }}
       >
-        {/* {messages.map((msg, index) => (
-          <ChatMessage key={index} message={msg.text} isUser={msg.isUser} />
-        ))} */}
+        {messages.map((msg, index) => (
+          <ChatMessage key={index} message={msg.text} isUser={msg.senderId} />
+        ))}
         <div ref={messagesEndRef} />
       </div>
       {/* Input Field */}
