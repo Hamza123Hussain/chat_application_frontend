@@ -8,18 +8,10 @@ import React, {
 } from 'react'
 
 const UserContext = createContext<any>(null)
-
 export const ContextProvider = ({ children }: { children: ReactNode }) => {
   const [Flag, setFlag] = useState(false)
   const [chatID, setCHATID] = useState('')
-  const [chatData, setChatData] = useState<any[]>(
-    []
-    //   () => {
-    //   // Load chatData from localStorage, if available
-    //   const storedChatData = localStorage.getItem('chatData')
-    //   return storedChatData ? JSON.parse(storedChatData) : [] // Parse JSON or default to an empty array
-    // }
-  )
+
   const [userID, setID] = useState<string>(() => {
     // Retrieve userID from localStorage, if available
     const storedID = localStorage.getItem('userID')
@@ -35,12 +27,6 @@ export const ContextProvider = ({ children }: { children: ReactNode }) => {
       localStorage.removeItem('userID')
     }
   }, [userID])
-
-  useEffect(() => {
-    // Store chatData in localStorage whenever it changes
-    localStorage.setItem('chatData', JSON.stringify(chatData))
-  }, [chatData])
-
   return (
     <UserContext.Provider
       value={{
@@ -48,8 +34,6 @@ export const ContextProvider = ({ children }: { children: ReactNode }) => {
         setID,
         searchUsers,
         setusers,
-        chatData,
-        setChatData,
         chatID,
         setCHATID,
         Flag,
