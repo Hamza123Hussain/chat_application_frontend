@@ -1,9 +1,16 @@
 import { CHATDAT } from '@/utils/ChatDataInterface'
 import Image from 'next/image'
-import React from 'react'
+import React, { useState } from 'react'
 const UserListCard = ({ User }: { User: CHATDAT }) => {
+  const [activeindex, setindex] = useState('')
   return (
-    <div key={User.user.id} className=" flex flex-col ">
+    <div
+      key={User.user.id}
+      className={` flex flex-col rounded-lg text-[#fffdfc] cursor-pointer p-2 ${
+        activeindex === User.user.id ? 'bg-green-900' : ''
+      } `}
+      onClick={() => setindex(User.user.id)}
+    >
       <div className=" flex items-center gap-2">
         <Image
           src={User.user.FileURL}
