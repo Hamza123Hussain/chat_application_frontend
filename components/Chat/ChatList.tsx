@@ -1,52 +1,59 @@
-import React, { useEffect, useState } from 'react'
-import UserInfo from '../User/UserInfo'
+import { useState, useEffect, useRef } from 'react'
+import { FiImage, FiCamera, FiMic } from 'react-icons/fi'
 import { ChatMessage } from '../Messages'
-import { Camera, Image, Mic } from 'lucide-react'
-import { useUserContext } from '@/utils/Context'
-import { GetChat } from '@/functions/GettingAChat'
-const messages = [
-  { text: 'Hi there!', isUser: false },
-  { text: 'Hello!', isUser: true },
-  { text: 'How are you?', isUser: false },
-  { text: 'I’m good, thanks!', isUser: true },
-]
-const ChatList = () => {
-  const { chatID } = useUserContext()
 
-  const GETCHAT = async () => {
-    try {
-      const Data = await GetChat(chatID)
-      console.log('CHAT DATA ', Data)
-    } catch (error) {
-      console.log('GOT ERROR', error)
-    }
-  }
+export default function ChatList() {
+  const [messageInput, setMessageInput] = useState('')
+  const messages = [
+    { text: 'Hello!', isUser: true },
+    { text: 'Hi, how are you?', isUser: false },
+  ]
+  const messagesEndRef = useRef<HTMLDivElement | null>(null)
+
+  // Scroll to bottom whenever new messages are added
   useEffect(() => {
-    GETCHAT()
-  }, [chatID])
-  const [messageinput, setmessageinput] = useState('')
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: 'smooth' })
+    }
+  }, [messages])
+
   return (
-    <div className=" flex flex-col justify-between ">
-      <UserInfo />
-      <div className=" flex-1">
+    <div className="flex flex-col justify-between h-full">
+      {/* User Information */}
+      <div className="p-4 border-b border-gray-300">
+        <h2 className="text-lg font-semibold text-gray-800">Chat with Hamza</h2>
+        <p className="text-sm text-gray-500">Last seen 2 hours ago</p>
+      </div>
+
+      {/* Messages */}
+      <div
+        className="flex-1 overflow-y-auto p-4 space-y-4"
+        style={{ maxHeight: 'calc(100vh - 160px)' }}
+      >
         {messages.map((msg, index) => (
           <ChatMessage key={index} message={msg.text} isUser={msg.isUser} />
         ))}
+        <div ref={messagesEndRef} />
       </div>
-      <div className=" bg-slate-600 w-full flex justify-between items-center gap-2  p-2 ">
-        <div className=" flex items-center gap-2">
-          <Image /> <Camera /> <Mic />
+
+      {/* Input Field */}
+      <div className="bg-white border-t border-gray-300 flex items-center gap-2 p-2 sticky bottom-0">
+        <div className="flex items-center gap-2">
+          <FiImage className="text-gray-500 hover:text-gray-700 cursor-pointer" />
+          <FiCamera className="text-gray-500 hover:text-gray-700 cursor-pointer" />
+          <FiMic className="text-gray-500 hover:text-gray-700 cursor-pointer" />
         </div>
         <input
-          value={messageinput}
-          onChange={(e: any) => setmessageinput(e.target.value)}
+          value={messageInput}
+          onChange={(e) => setMessageInput(e.target.value)}
           type="text"
-          className=" border-2  outline-none bg-transparent flex-1 rounded-lg p-1  "
+          placeholder="Type a message..."
+          className="flex-1 border-2 border-gray-300 rounded-lg p-2 outline-none focus:border-blue-500"
         />
-        <button className=" bg-blue-500 rounded-lg px-5 py-2">Send</button>
+        <button className="bg-blue-500 text-white rounded-lg px-4 py-2 hover:bg-blue-600 transition duration-300">
+          Send
+        </button>
       </div>
     </div>
   )
 }
-
-export default ChatList
