@@ -1,26 +1,22 @@
 import { MakeNewChat } from '@/functions/CreatingNewChat'
 import { useUserContext } from '@/utils/Context'
-import React, { useState } from 'react'
-
+import Image from 'next/image'
+import React from 'react'
 const UserFound = ({ User }: { User: any }) => {
   const { userID, Flag, setFlag } = useUserContext()
-  const [NewUsers, setUsers] = useState([])
   const AddUser = async () => {
     try {
       const Data = await MakeNewChat(User.id, userID)
       setFlag(!Flag)
-      console.log('DATA HERE', Data)
-      // setUsers((prev: any) => prev.push(Data))
-      console.log('USERS : ', NewUsers)
+      // console.log('DATA HERE', Data)
     } catch (error) {
       console.log(error)
     }
   }
-  console.log(`IDSSS : ${userID}&&&&&&${User.id}`)
   return (
     <div className=" flex gap-2 items-center justify-between ">
       <div className="flex gap-2 items-center">
-        <img
+        <Image
           src={User.FileURL}
           alt="USER"
           width={25}
@@ -38,5 +34,4 @@ const UserFound = ({ User }: { User: any }) => {
     </div>
   )
 }
-
 export default UserFound
