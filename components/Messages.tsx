@@ -1,3 +1,4 @@
+import { useUserContext } from '@/utils/Context'
 import Image from 'next/image'
 import React from 'react'
 
@@ -6,13 +7,20 @@ export const ChatMessage = ({
   isUser,
 }: {
   message: string
-  isUser: boolean
+  isUser: string
 }) => {
+  const { userID } = useUserContext()
   return (
-    <div className={`flex ${isUser ? 'justify-end' : 'justify-start'} my-2`}>
+    <div
+      className={`flex ${
+        isUser == userID ? 'justify-end' : 'justify-start'
+      } my-2`}
+    >
       <div
         className={`p-3 max-w-xs md:max-w-sm lg:max-w-md xl:max-w-lg rounded-lg shadow-md ${
-          isUser ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'
+          isUser === userID
+            ? 'bg-blue-500 text-white'
+            : 'bg-gray-200 text-gray-800'
         }`}
       >
         <p className="text-sm">{message}</p>
