@@ -10,6 +10,7 @@ import React, {
 const UserContext = createContext<any>(null)
 
 export const ContextProvider = ({ children }: { children: ReactNode }) => {
+  const [Flag, setFlag] = useState(false)
   const [chatID, setCHATID] = useState('')
   const [chatData, setChatData] = useState<any[]>(
     []
@@ -51,6 +52,8 @@ export const ContextProvider = ({ children }: { children: ReactNode }) => {
         setChatData,
         chatID,
         setCHATID,
+        Flag,
+        setFlag,
       }}
     >
       {children}
