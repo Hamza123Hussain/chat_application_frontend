@@ -5,7 +5,7 @@ import { Message } from '@/utils/MessageInterface'
 import NewMessage from '../NewMessage'
 import { useUserContext } from '@/utils/Context'
 export default function ChatList() {
-  const { chatID } = useUserContext()
+  const { chatID, MessageFlag } = useUserContext()
   console.log('CHAT ID ', chatID)
   const [messages, setmessage] = useState<Message[]>([])
   const messagesEndRef = useRef<HTMLDivElement | null>(null)
@@ -26,7 +26,7 @@ export default function ChatList() {
         socket.disconnect()
       }
     }
-  }, [])
+  }, [MessageFlag])
   return (
     <div className="flex flex-col justify-between h-full">
       <div
