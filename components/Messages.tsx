@@ -5,40 +5,40 @@ import React from 'react'
 export const ChatMessage = ({
   message,
   isUser,
+  Pic,
 }: {
   message: string
   isUser: string
+  Pic: string | null
 }) => {
   const { userID } = useUserContext()
+
   return (
     <div
       className={`flex ${
-        isUser == userID ? 'justify-end' : 'justify-start'
+        isUser === userID ? 'justify-end' : 'justify-start'
       } my-2`}
     >
       <div
-        className={`p-3 max-w-xs md:max-w-sm lg:max-w-md xl:max-w-lg rounded-lg shadow-md ${
+        className={`p-2 max-w-xs md:max-w-sm lg:max-w-md xl:max-w-lg rounded-lg shadow-md ${
           isUser === userID
             ? 'bg-blue-500 text-white'
             : 'bg-gray-200 text-gray-800'
         }`}
       >
+        {Pic && (
+          <div className="w-full mb-2">
+            <Image
+              src={Pic}
+              width={300}
+              height={200}
+              alt={message}
+              className="rounded-lg w-full object-cover"
+              layout="responsive"
+            />
+          </div>
+        )}
         <p className="text-sm">{message}</p>
-        {/* <img
-          src="https://i.tribune.com.pk/media/images/444139501_18405085231074477_3406012980019913042_n1716807049-0/444139501_18405085231074477_3406012980019913042_n1716807049-0.jpg"
-          alt="hanu"
-          width={200}
-        /> */}
-        {/* <div className="flex items-center mt-2 text-xs text-gray-600">
-          <Image
-            src="/User.png"
-            alt="User"
-            width={20}
-            height={20}
-            className="rounded-full mr-2"
-          />
-          <span>Hamza Hussain</span>
-        </div> */}
       </div>
     </div>
   )
