@@ -8,9 +8,9 @@ export default function Home() {
   const { chatID } = useUserContext()
   return (
     <div className="flex min-h-screen">
-      <div className="bg-slate-600 w-6/12 md:w-2/12">
+      {/* <div className="bg-slate-600 w-6/12 md:w-2/12">
         <UserList />
-      </div>
+      </div> */}
       <div className="bg-slate-100 w-full md:w-10/12 p-4 mx-auto">
         {chatID ? (
           <ChatList />
