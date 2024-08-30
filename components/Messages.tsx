@@ -24,6 +24,11 @@ export const ChatMessage = ({
         }`}
       >
         <p className="text-sm">{message}</p>
+        {/* <img
+          src="https://i.tribune.com.pk/media/images/444139501_18405085231074477_3406012980019913042_n1716807049-0/444139501_18405085231074477_3406012980019913042_n1716807049-0.jpg"
+          alt="hanu"
+          width={200}
+        /> */}
         {/* <div className="flex items-center mt-2 text-xs text-gray-600">
           <Image
             src="/User.png"
