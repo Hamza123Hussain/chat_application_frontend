@@ -2,6 +2,7 @@ import { createMessage } from '@/functions/CreateANewMessage'
 import { useUserContext } from '@/utils/Context'
 import { FileImage } from 'lucide-react'
 import React, { useState } from 'react'
+import AddImageInMessage from './User/AddImageInMessage'
 const NewMessage = () => {
   const [messageInput, setMessageInput] = useState('')
   const { chatID, userID, setMessageFlag, MessageFlag, RecieverID } =
@@ -24,9 +25,7 @@ const NewMessage = () => {
   return (
     <div className="bg-white border-t border-gray-300 flex items-center gap-2 p-2 sticky bottom-0">
       <div className="flex items-center gap-2">
-        <FileImage className="text-gray-500 hover:text-gray-700 cursor-pointer" />
-        {/* <FiCamer className="text-gray-500 hover:text-gray-700 cursor-pointer" />
-        <FiMic className="text-gray-500 hover:text-gray-700 cursor-pointer" /> */}
+        <AddImageInMessage />
       </div>
       <input
         value={messageInput}
