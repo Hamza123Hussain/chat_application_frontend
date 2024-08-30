@@ -5,6 +5,7 @@ export interface Message {
   MessageImage: string | null
   UserProfileImage: string | null
   Name: string
+  MessageID: string
 }
 type FirestoreTimestamp = {
   seconds: number
