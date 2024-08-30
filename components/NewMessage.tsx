@@ -4,21 +4,18 @@ import { FileImage } from 'lucide-react'
 import React, { useState } from 'react'
 const NewMessage = () => {
   const [messageInput, setMessageInput] = useState('')
-  const { chatID, userID } = useUserContext()
+  const { chatID, userID, setMessageFlag, MessageFlag, RecieverID } =
+    useUserContext()
   const CreateMessage = async () => {
     /**ezisEbOzjcS1aFzX21Tp
      * chatID, text, senderId, receiverId
      */
     try {
-      const Data = await createMessage(
-        chatID,
-        messageInput,
-        userID,
-        'oIsdVyqoshalZfOPg3otWGQ198h1'
-      )
+      const Data = await createMessage(chatID, messageInput, userID, RecieverID)
       if (Data) {
         console.log('API HAS RESPONDED : ', Data)
         setMessageInput('')
+        setMessageFlag(!MessageFlag)
       }
     } catch (error) {
       console.log('ERROR ON THE RESPONSE :  ', error)
@@ -47,5 +44,4 @@ const NewMessage = () => {
     </div>
   )
 }
-
 export default NewMessage
