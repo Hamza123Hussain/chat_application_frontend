@@ -1,8 +1,8 @@
 import { fetchAndHandleUserDetails } from '@/functions/GettingUserDetail'
 import { Signout } from '@/functions/Signout'
 import { useUserContext } from '@/utils/Context'
+import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
-
 const CurrentUser = () => {
   const [user, setUser] = useState<any>()
   const { userID, setID } = useUserContext()
@@ -12,7 +12,7 @@ const CurrentUser = () => {
   const CurrentUser = async () => {
     try {
       const Data: any = await fetchAndHandleUserDetails(userID)
-      console.log('DATA FETCHED : ', Data)
+      // console.log('DATA FETCHED : ', Data)
       if (Data) setUser(Data)
     } catch (error) {
       console.log('Error in fetching data', error)
@@ -29,16 +29,16 @@ const CurrentUser = () => {
   }
   return (
     <div className=" flex gap-2 items-center">
-      <img
+      <Image
         src={user?.FileURL}
         width={30}
         height={50}
         alt="UserImage"
         className=" rounded-full"
       />
-      <h1>{user?.Name}</h1>
+      <h1 className="text-[#E0E0E0]">{user?.Name}</h1>
       <button
-        className=" bg-green-900 rounded-lg px-3 py-1 border-white text-white"
+        className=" bg-[#BB86FC] text-[#121212] hover:bg-[#8c2eff] rounded-lg px-3 py-1 border-white "
         onClick={ByeBye}
       >
         Sign Out
@@ -46,5 +46,4 @@ const CurrentUser = () => {
     </div>
   )
 }
-
 export default CurrentUser
