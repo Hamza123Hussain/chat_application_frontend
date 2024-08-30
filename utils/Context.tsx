@@ -9,6 +9,7 @@ import React, {
 const UserContext = createContext<any>(null)
 export const ContextProvider = ({ children }: { children: ReactNode }) => {
   const [Flag, setFlag] = useState(false)
+  const [MessageFlag, setMessageFlag] = useState(false)
   const [chatID, setCHATID] = useState('')
   const [userID, setID] = useState<string>(() => {
     const storedID = localStorage.getItem('userID')
@@ -33,6 +34,8 @@ export const ContextProvider = ({ children }: { children: ReactNode }) => {
         setCHATID,
         Flag,
         setFlag,
+        MessageFlag,
+        setMessageFlag,
       }}
     >
       {children}
