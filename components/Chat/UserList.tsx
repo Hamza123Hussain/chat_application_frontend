@@ -6,7 +6,7 @@ import { io } from 'socket.io-client'
 import { CHATDAT } from '@/utils/ChatDataInterface'
 import UserListCard from '../User/UserListCard'
 const UserList: React.FC = () => {
-  const { userID, Flag } = useUserContext()
+  const { userID, Flag, MessageFlag } = useUserContext()
   const [chatData, setChatData] = useState<CHATDAT[]>([])
   useEffect(() => {
     const socket = io('http://localhost:5000')
@@ -20,7 +20,7 @@ const UserList: React.FC = () => {
         socket.disconnect()
       }
     }
-  }, [userID, Flag])
+  }, [userID, Flag, MessageFlag])
   return (
     <div className="p-2 flex flex-col">
       <div className="flex gap-2 items-center">
