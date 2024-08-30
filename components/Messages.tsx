@@ -33,7 +33,7 @@ export const ChatMessage = ({
               width={300}
               height={200}
               alt={message}
-              className="rounded-lg w-full object-cover"
+              className="rounded-lg w-full "
               layout="responsive"
             />
           </div>
