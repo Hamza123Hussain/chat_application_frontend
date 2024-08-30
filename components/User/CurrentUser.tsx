@@ -28,15 +28,17 @@ const CurrentUser = () => {
     } catch (error) {}
   }
   return (
-    <div className=" flex gap-2 items-center">
-      <Image
-        src={user?.FileURL}
-        width={30}
-        height={50}
-        alt="UserImage"
-        className=" rounded-full"
-      />
-      <h1 className="text-[#E0E0E0]">{user?.Name}</h1>
+    <div className=" flex gap-2 items-center fflex-row text-xs sm:text-sm">
+      <div className=" flex gap-2 items-center">
+        <Image
+          src={user?.FileURL}
+          width={30}
+          height={50}
+          alt="UserImage"
+          className=" rounded-full"
+        />
+        <h1 className="text-[#E0E0E0]">{user?.Name}</h1>
+      </div>
       <button
         className=" bg-[#BB86FC] text-[#121212] hover:bg-[#8c2eff] rounded-lg px-3 py-1 border-white "
         onClick={ByeBye}
