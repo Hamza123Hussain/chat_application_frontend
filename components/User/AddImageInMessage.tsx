@@ -29,9 +29,9 @@ const AddImageInMessage = () => {
         file
       )
       if (Data) {
-        console.log('API HAS RESPONDED : ', Data)
+        // console.log('API HAS RESPONDED : ', Data)
         setDescription('')
-        // setMessageFlag(!MessageFlag)
+        setMessageFlag(!MessageFlag)
       }
     } catch (error) {
       console.log('ERROR ON THE RESPONSE :  ', error)
