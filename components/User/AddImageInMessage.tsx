@@ -8,14 +8,34 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog'
+import { useUserContext } from '@/utils/Context'
+import { createMessage } from '@/functions/CreateANewMessage'
 const AddImageInMessage = () => {
+  const { chatID, userID, setMessageFlag, MessageFlag, RecieverID } =
+    useUserContext()
   const [file, setFile] = useState<File | null>(null)
   const [description, setDescription] = useState<string>('')
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false)
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) setFile(event.target.files[0])
   }
-  const handleSave = () => {
+  const handleSave = async () => {
+    try {
+      const Data = await createMessage(
+        chatID,
+        description,
+        userID,
+        RecieverID,
+        file
+      )
+      if (Data) {
+        console.log('API HAS RESPONDED : ', Data)
+        setDescription('')
+        // setMessageFlag(!MessageFlag)
+      }
+    } catch (error) {
+      console.log('ERROR ON THE RESPONSE :  ', error)
+    }
     setIsDialogOpen(false)
   }
   return (
@@ -26,7 +46,7 @@ const AddImageInMessage = () => {
           onClick={() => setIsDialogOpen(true)}
         />
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent>
         <DialogHeader>
           <DialogTitle>Upload an Image</DialogTitle>
           <DialogDescription>
