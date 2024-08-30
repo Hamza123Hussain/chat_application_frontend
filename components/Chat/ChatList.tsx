@@ -33,13 +33,8 @@ export default function ChatList() {
         className="flex-1 overflow-y-auto p-4 space-y-4"
         style={{ maxHeight: 'calc(100vh - 160px)' }}
       >
-        {messages.map((msg, index) => (
-          <ChatMessage
-            key={index}
-            message={msg.text}
-            isUser={msg.senderId}
-            Pic={msg.MessageImage}
-          />
+        {messages.map((msg) => (
+          <ChatMessage key={msg.MessageID} messageData={msg} />
         ))}
         <div ref={messagesEndRef} />
       </div>
