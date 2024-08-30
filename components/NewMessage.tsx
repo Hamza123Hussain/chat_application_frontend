@@ -1,6 +1,5 @@
 import { createMessage } from '@/functions/CreateANewMessage'
 import { useUserContext } from '@/utils/Context'
-import { FileImage } from 'lucide-react'
 import React, { useState } from 'react'
 import AddImageInMessage from './User/AddImageInMessage'
 const NewMessage = () => {
@@ -8,9 +7,6 @@ const NewMessage = () => {
   const { chatID, userID, setMessageFlag, MessageFlag, RecieverID } =
     useUserContext()
   const CreateMessage = async () => {
-    /**ezisEbOzjcS1aFzX21Tp
-     * chatID, text, senderId, receiverId
-     */
     try {
       const Data = await createMessage(chatID, messageInput, userID, RecieverID)
       if (Data) {
@@ -23,7 +19,7 @@ const NewMessage = () => {
     }
   }
   return (
-    <div className="bg-white border-t border-gray-300 flex items-center gap-2 p-2 sticky bottom-0">
+    <div className="bg-white border-t border-gray-300 flex items-center gap-2  sticky bottom-0">
       <div className="flex items-center gap-2">
         <AddImageInMessage />
       </div>
@@ -32,7 +28,7 @@ const NewMessage = () => {
         onChange={(e) => setMessageInput(e.target.value)}
         type="text"
         placeholder="Type a message..."
-        className="flex-1 border-2 border-gray-300 rounded-lg p-2 outline-none focus:border-blue-500"
+        className="flex-1 border-2 border-gray-300 rounded-lg w-20 p-2 outline-none focus:border-blue-500"
       />
       <button
         onClick={CreateMessage}
