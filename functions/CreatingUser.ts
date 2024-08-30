@@ -12,17 +12,10 @@ export const handleSubmit = async (inputVal: InputValues) => {
     formData.append('email', inputVal.email)
     formData.append('password', inputVal.password)
     formData.append('Name', inputVal.Name)
-
     const response = await axios.post(
       'http://localhost:5000/api/Auth/Register', // Replace with your actual backend URL
-      formData,
-      {
-        headers: {
-          'Content-Type': 'multipart/form-data', // Ensure headers are set correctly
-        },
-      }
+      formData
     )
-
     if (response.status === 200) {
       showCustomToast()
     }
