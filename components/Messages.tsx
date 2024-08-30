@@ -24,7 +24,7 @@ export const ChatMessage = ({
         }`}
       >
         <p className="text-sm">{message}</p>
-        <div className="flex items-center mt-2 text-xs text-gray-600">
+        {/* <div className="flex items-center mt-2 text-xs text-gray-600">
           <Image
             src="/User.png"
             alt="User"
@@ -33,7 +33,7 @@ export const ChatMessage = ({
             className="rounded-full mr-2"
           />
           <span>Hamza Hussain</span>
-        </div>
+        </div> */}
       </div>
     </div>
   )
