@@ -1,49 +1,34 @@
 import axios from 'axios'
-
-// Define types for the function parameters and response
-interface CreateMessagePayload {
-  chatID: string
-  text: string
-  senderId: string
-  receiverId: string
-}
-
-interface MessageResponse {
-  senderId: string
-  text: string
-  timestamp: string
-}
-
 interface ErrorResponse {
   error: string
   details?: string
 }
-
-// Function to create a message
 export const createMessage = async (
   chatID: string,
   text: string,
   senderId: string,
-  receiverId: string
-): Promise<MessageResponse | null> => {
+  receiverId: string,
+  image?: File | null // Optional image parameter
+) => {
   try {
-    // Define the payload for the POST request
-    const payload: CreateMessagePayload = {
-      chatID,
-      text,
-      senderId,
-      receiverId,
+    // Create FormData to handle both text and optional image
+    const formData = new FormData()
+    formData.append('chatID', chatID)
+    formData.append('text', text)
+    formData.append('senderId', senderId)
+    formData.append('receiverId', receiverId)
+    if (image) {
+      formData.append('File', image) // Append image if provided
     }
-
     // Send a POST request to the backend API to create a message
-    const response = await axios.post<MessageResponse>(
+    const response = await axios.post(
       'http://localhost:5000/api/User/NewMessage',
-      payload
+      formData
     )
     // Check if the response status is 200 (success)
     if (response.status === 200) {
       console.log('Message created successfully:', response.data)
-      return response.data
+      return true
     } else {
       console.error('Failed to create message:', response.data)
       return null
