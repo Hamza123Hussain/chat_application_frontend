@@ -4,7 +4,7 @@ import Image from 'next/image'
 import React, { useState } from 'react'
 const UserListCard = ({ User }: { User: CHATDAT }) => {
   const [activeindex, setindex] = useState('')
-  const { setCHATID } = useUserContext()
+  const { setCHATID, setRecieverID } = useUserContext()
   return (
     <div
       key={User.user.id}
@@ -12,7 +12,9 @@ const UserListCard = ({ User }: { User: CHATDAT }) => {
         activeindex === User.user.id ? 'bg-green-900' : ''
       } `}
       onClick={() => {
-        setindex(User.user.id), setCHATID(User.chatID)
+        setindex(User.user.id),
+          setCHATID(User.chatID),
+          setRecieverID(User.user.id)
       }}
     >
       <div className=" flex items-center gap-2">
