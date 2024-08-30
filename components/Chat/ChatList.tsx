@@ -34,7 +34,12 @@ export default function ChatList() {
         style={{ maxHeight: 'calc(100vh - 160px)' }}
       >
         {messages.map((msg, index) => (
-          <ChatMessage key={index} message={msg.text} isUser={msg.senderId} />
+          <ChatMessage
+            key={index}
+            message={msg.text}
+            isUser={msg.senderId}
+            Pic={msg.MessageImage}
+          />
         ))}
         <div ref={messagesEndRef} />
       </div>
