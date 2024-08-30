@@ -20,11 +20,13 @@ const Navbar = () => {
         <Image
           src={'/chat.png'}
           alt="Logo"
-          width={40}
+          width={20}
           height={40}
           className="rounded-full"
         />
-        <h1 className="text-lg font-semibold text-[#E0E0E0]">ChatStream</h1>
+        <h1 className="sm:text-lg font-semibold text-xs  text-[#E0E0E0]">
+          ChatStream
+        </h1>
       </div>
       <div className="flex gap-4">
         {flag ? (
@@ -34,7 +36,7 @@ const Navbar = () => {
             onClick={() => {
               Router.push('/Login')
             }}
-            className="px-6 py-2 rounded-md bg-[#BB86FC] text-[#121212] hover:bg-[#8c2eff] transition duration-300"
+            className="px-6 py-2 rounded-md bg-[#BB86FC] text-[#121212] hover:bg-[#8c2eff] text-xs sm:text-sm transition duration-300"
           >
             Sign In
           </button>
