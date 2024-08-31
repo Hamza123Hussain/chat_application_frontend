@@ -13,7 +13,7 @@ export const MakeNewChat = async (userId: string, receiverId: string) => {
     )
 
     if (response.status === 200) {
-      return response.data
+      return true
     }
   } catch (error: any) {
     console.error('Error in API call:', error)
