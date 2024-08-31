@@ -11,11 +11,7 @@ export const ContextProvider = ({ children }: { children: ReactNode }) => {
   const [Flag, setFlag] = useState(false)
   const [RecieverID, setRecieverID] = useState('')
   const [MessageFlag, setMessageFlag] = useState(false)
-  const [chatID, setCHATID] = useState<string>(() => {
-    // Retrieve chatID from localStorage on initialization
-    const storedChatID = localStorage.getItem('chatID')
-    return storedChatID || '' // Default to an empty string if no chatID is found
-  })
+  const [chatID, setCHATID] = useState<string>()
   const [userID, setID] = useState<string>(() => {
     // Retrieve userID from localStorage on initialization
     const storedID = localStorage.getItem('userID')
@@ -30,14 +26,6 @@ export const ContextProvider = ({ children }: { children: ReactNode }) => {
       localStorage.removeItem('userID')
     }
   }, [userID])
-
-  useEffect(() => {
-    if (chatID) {
-      localStorage.setItem('chatID', chatID)
-    } else {
-      localStorage.removeItem('chatID')
-    }
-  }, [chatID])
 
   return (
     <UserContext.Provider
