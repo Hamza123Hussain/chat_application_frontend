@@ -5,16 +5,17 @@ import { io } from 'socket.io-client'
 import { CHATDAT } from '@/utils/ChatDataInterface'
 import UserListCard from '../User/UserListCard'
 import Loader from '../Loader'
+
 const UserList: React.FC = () => {
   const { userID, Flag, MessageFlag } = useUserContext()
   const [chatData, setChatData] = useState<CHATDAT[]>([])
   const [Loading, setloading] = useState(false)
+
   useEffect(() => {
     setloading(true)
     const socket = io('http://localhost:5000')
     socket.emit('UserList', userID)
     socket.on('UserListReceived', (data: any) => {
-      // console.log('Received data from server:', data)
       setChatData(data)
       setloading(false)
     })
@@ -24,19 +25,24 @@ const UserList: React.FC = () => {
       }
     }
   }, [userID, Flag, MessageFlag])
-  if (Loading) return <Loader />
+
   return (
-    <div className="p-2 flex flex-col">
-      <div className="flex gap-2 items-center">
-        {/* <SearchBar /> */}
-        <AddNewUser />
-      </div>
-      <div className="mt-4">
-        {chatData.map((User) => (
-          <UserListCard User={User} key={User.user.id} />
-        ))}
+    <div className="fixed top-0 min-h-screen sm:border-r border-slate-800 bg-gray-900 p-2 gap-2 flex flex-col">
+      <AddNewUser />
+      {/* Scrollable container with fixed height */}
+      <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-green-500 scrollbar-track-gray-800 relative">
+        {Loading ? (
+          <div className="flex items-center justify-center h-full">
+            <Loader />
+          </div>
+        ) : (
+          chatData.map((User) => (
+            <UserListCard User={User} key={User.user.id} />
+          ))
+        )}
       </div>
     </div>
   )
 }
+
 export default UserList
