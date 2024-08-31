@@ -19,7 +19,7 @@ const NewMessage = () => {
     }
   }
   return (
-    <div className="bg-white border-t border-gray-300 flex items-center gap-4 px-2 rounded-lg  sticky bottom-0">
+    <div className="bg-[#1e1e1e] border-t border-[#333] flex items-center gap-4 p-2 rounded-lg  sticky bottom-0">
       <div className="flex items-center gap-2">
         <AddImageInMessage />
       </div>
@@ -28,11 +28,11 @@ const NewMessage = () => {
         onChange={(e) => setMessageInput(e.target.value)}
         type="text"
         placeholder="Type a message..."
-        className="flex-1 border-2 border-gray-300 rounded-lg w-20 p-2 outline-none focus:border-blue-500"
+        className="flex-1 border-2 border-gray-300 rounded-lg w-20 p-2 outline-none f bg-[#121212] text-white focus:border-[#BB86FC]"
       />
       <button
         onClick={CreateMessage}
-        className="bg-blue-500 text-white rounded-lg px-4 py-2 hover:bg-blue-600 transition duration-300"
+        className="px-4 py-2 bg-[#BB86FC] text-white rounded-lg  hover:bg-[#8c2eff] transition duration-30"
       >
         Send
       </button>
