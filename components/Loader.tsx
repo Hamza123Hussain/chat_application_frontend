@@ -3,16 +3,11 @@ import React from 'react'
 const Loader = () => {
   return (
     /* From Uiverse.io by JkHuger */
-    <div className="loader flex justify-center min-h-screen items-center">
-      <div className="square" id="sq1"></div>
-      <div className="square" id="sq2"></div>
-      <div className="square" id="sq3"></div>
-      <div className="square" id="sq4"></div>
-      <div className="square" id="sq5"></div>
-      <div className="square" id="sq6"></div>
-      <div className="square" id="sq7"></div>
-      <div className="square" id="sq8"></div>
-      <div className="square" id="sq9"></div>
+
+    <div className="flex-col gap-4 w-full flex items-center justify-center">
+      <div className="w-20 h-20 border-4 border-transparent text-[#253d17] text-4xl animate-spin flex items-center justify-center border-t-[#253d17] rounded-full">
+        <div className="w-16 h-16 border-4 border-transparent text-[#2d153f] text-2xl animate-spin flex items-center justify-center border-t-[#2d153f] rounded-full"></div>
+      </div>
     </div>
   )
 }
