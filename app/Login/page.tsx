@@ -49,8 +49,19 @@ const Login = () => {
           name="password"
           value={inputVal.password}
           onChange={handleChange}
-          className="mb-4 p-3 rounded-md w-full border border-gray-600 bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500"
+          className="mb-2 p-3 rounded-md w-full border border-gray-600 bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500"
         />
+
+        {/* Forgot Password */}
+        <div className="text-right mb-4">
+          <span
+            onClick={() => Router.push('/forgot-password')}
+            className="text-sm text-gray-400 hover:text-gray-300 cursor-pointer"
+          >
+            Forgot Password?
+          </span>
+        </div>
+
         <button
           className="bg-green-500 px-5 py-2 rounded-md text-white hover:bg-green-600 transition duration-300 w-full"
           onClick={Login}
