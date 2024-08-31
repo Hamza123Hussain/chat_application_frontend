@@ -8,7 +8,7 @@ const UserFound = ({ User }: { User: any }) => {
   const AddUser = async () => {
     try {
       const Data = await MakeNewChat(User.id, userID)
-      setFlag(!Flag)
+      if (Data) setFlag(!Flag)
     } catch (error) {
       console.log(error)
     }
