@@ -15,28 +15,24 @@ import UserFound from './UserFound'
 const AddNewUser = () => {
   const { searchUsers } = useUserContext()
   return (
-    <div className=" bg-transparent">
+    <div className="bg-transparent">
       <Dialog>
         <DialogTrigger>
-          {' '}
-          <SquarePlus size={20} className="" />
+          <div className="flex items-center gap-1">
+            <span className="text-[#e0e0e0]">Add A New User</span>
+            <SquarePlus size={20} className="text-[#BB86FC]" />
+          </div>
         </DialogTrigger>
-        <DialogContent>
+        <DialogContent className="bg-gray-900 text-white">
           <DialogHeader>
             <DialogTitle>Add New User</DialogTitle>
             <DialogDescription>
-              <div className=" flex flex-col">
+              <div className="flex flex-col">
                 <SearchBar />
-                <div className=" flex flex-col">
-                  {searchUsers.length > 0
-                    ? searchUsers?.map((element: any, index: number) => {
-                        return (
-                          <div key={index}>
-                            <UserFound User={element} />
-                          </div>
-                        )
-                      })
-                    : ''}
+                <div className="flex flex-col mt-4">
+                  {searchUsers.map((element: any, index: number) => (
+                    <UserFound User={element} key={index} />
+                  ))}
                 </div>
               </div>
             </DialogDescription>

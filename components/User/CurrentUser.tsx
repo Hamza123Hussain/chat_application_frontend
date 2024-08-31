@@ -28,7 +28,7 @@ const CurrentUser = () => {
     } catch (error) {}
   }
   return (
-    <div className=" flex gap-2 items-center fflex-row text-xs sm:text-sm">
+    <div className=" flex gap-2 items-center flex-row text-xs sm:text-sm">
       <div className=" flex gap-2 items-center">
         <Image
           src={user?.FileURL}
