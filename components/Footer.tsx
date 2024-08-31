@@ -3,7 +3,7 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <div className="flex flex-col justify-center items-center bg-[#121212] text-[#E0E0E0] shadow-lg gap-2 p-1">
+    <div className="flex flex-col justify-center items-center bg-[#121212] text-[#E0E0E0] w-full  shadow-lg gap-2 p-1">
       <div className="flex items-center gap-2">
         <Image
           src={'/chat.png'}
