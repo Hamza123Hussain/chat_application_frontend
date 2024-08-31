@@ -26,7 +26,7 @@ const UserListCard = ({ User }: { User: CHATDAT }) => {
           alt="User"
           className="rounded-full"
         />
-        <h6 className="text-lg">{User.user.Name}</h6>
+        <h6 className=" text-xs sm:text-lg">{User.user.Name}</h6>
       </div>
       <span className="text-center text-sm text-gray-400">
         {User.LastMessage ? User.LastMessage : 'No recent messages'}
