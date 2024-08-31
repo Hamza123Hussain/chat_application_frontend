@@ -25,13 +25,18 @@ const SignUpTextFields = ({
   }
 
   return (
-    <>
-      <input
-        type="file"
-        name="File"
-        onChange={handleFileChange}
-        className="mb-2 p-2 rounded"
-      />
+    <div className="flex flex-col gap-4">
+      <label className="flex items-center gap-2">
+        <input
+          type="file"
+          name="File"
+          onChange={handleFileChange}
+          className="hidden" // Hide default file input
+        />
+        <button className="bg-gray-700 text-white px-4 py-2 rounded-md border border-gray-600 hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-green-500">
+          Choose File
+        </button>
+      </label>
 
       <input
         type="text"
@@ -39,7 +44,7 @@ const SignUpTextFields = ({
         name="Name"
         value={inputVal.Name}
         onChange={handleChange}
-        className="mb-2 p-2 rounded"
+        className="p-2 rounded border border-gray-600 bg-gray-800 text-white placeholder-gray-400"
       />
       <input
         type="email"
@@ -47,7 +52,7 @@ const SignUpTextFields = ({
         name="email"
         value={inputVal.email}
         onChange={handleChange}
-        className="mb-2 p-2 rounded"
+        className="p-2 rounded border border-gray-600 bg-gray-800 text-white placeholder-gray-400"
       />
       <input
         type="password"
@@ -55,9 +60,9 @@ const SignUpTextFields = ({
         name="password"
         value={inputVal.password}
         onChange={handleChange}
-        className="mb-2 p-2 rounded"
+        className="p-2 rounded border border-gray-600 bg-gray-800 text-white placeholder-gray-400"
       />
-    </>
+    </div>
   )
 }
 
