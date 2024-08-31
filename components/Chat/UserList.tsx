@@ -5,14 +5,16 @@ import { useUserContext } from '@/utils/Context'
 import { io } from 'socket.io-client'
 import { CHATDAT } from '@/utils/ChatDataInterface'
 import UserListCard from '../User/UserListCard'
+
 const UserList: React.FC = () => {
   const { userID, Flag, MessageFlag } = useUserContext()
   const [chatData, setChatData] = useState<CHATDAT[]>([])
+
   useEffect(() => {
     const socket = io('http://localhost:5000')
     socket.emit('UserList', userID)
     socket.on('UserListReceived', (data: any) => {
-      console.log('Received data from server:', data)
+      // console.log('Received data from server:', data)
       setChatData(data)
     })
     return () => {
@@ -21,10 +23,12 @@ const UserList: React.FC = () => {
       }
     }
   }, [userID, Flag, MessageFlag])
+
   return (
     <div className="p-2 flex flex-col">
       <div className="flex gap-2 items-center">
-        <SearchBar />
+        {/* <SearchBar /> */}
+
         <AddNewUser />
       </div>
       <div className="mt-4">
@@ -35,4 +39,5 @@ const UserList: React.FC = () => {
     </div>
   )
 }
+
 export default UserList
