@@ -4,6 +4,7 @@ import { io } from 'socket.io-client'
 import { Message } from '@/utils/MessageInterface'
 import NewMessage from '../NewMessage'
 import { useUserContext } from '@/utils/Context'
+import { BackendUrl } from '@/utils/SignUpInterface'
 
 export default function ChatList() {
   const { chatID, MessageFlag } = useUserContext()
@@ -17,7 +18,7 @@ export default function ChatList() {
   }, [messages])
 
   useEffect(() => {
-    const socket = io('http://localhost:5000')
+    const socket = io(`${BackendUrl}`)
     socket.emit('Chat', chatID)
     socket.on('ChatData', (data) => {
       setmessage(data.messages)

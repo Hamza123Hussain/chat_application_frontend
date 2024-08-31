@@ -5,6 +5,7 @@ import { io } from 'socket.io-client'
 import { CHATDAT } from '@/utils/ChatDataInterface'
 import UserListCard from '../User/UserListCard'
 import Loader from '../Loader'
+import { BackendUrl } from '@/utils/SignUpInterface'
 
 const UserList: React.FC = () => {
   const { userID, Flag, MessageFlag } = useUserContext()
@@ -13,7 +14,7 @@ const UserList: React.FC = () => {
 
   useEffect(() => {
     setloading(true)
-    const socket = io('http://localhost:5000')
+    const socket = io(`${BackendUrl}`)
     socket.emit('UserList', userID)
     socket.on('UserListReceived', (data: any) => {
       setChatData(data)
