@@ -18,7 +18,7 @@ const AddNewUser = () => {
     <div className="bg-transparent">
       <Dialog>
         <DialogTrigger>
-          <div className="flex items-center gap-1">
+          <div className="flex items-center justify-between gap-4 mt-10 md:mt-0">
             <span className="text-[#e0e0e0]">Add A New User</span>
             <SquarePlus size={20} className="text-[#BB86FC]" />
           </div>
