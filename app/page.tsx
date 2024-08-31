@@ -7,7 +7,6 @@ import { useUserContext } from '@/utils/Context'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import MobileView from '@/components/MobileView'
-
 export default function Home() {
   const { chatID } = useUserContext()
   return (

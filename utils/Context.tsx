@@ -6,24 +6,31 @@ import React, {
   useContext,
   useEffect,
 } from 'react'
+
 const UserContext = createContext<any>(null)
+
 export const ContextProvider = ({ children }: { children: ReactNode }) => {
   const [Flag, setFlag] = useState(false)
   const [RecieverID, setRecieverID] = useState('')
   const [MessageFlag, setMessageFlag] = useState(false)
   const [chatID, setCHATID] = useState<string>()
   const [userID, setID] = useState<string>(() => {
-    // Retrieve userID from localStorage on initialization
-    const storedID = localStorage.getItem('userID')
-    return storedID || '' // Default to an empty string if no userID is found
+    // Ensure that localStorage is only accessed on the client
+    if (typeof window !== 'undefined') {
+      const storedID = localStorage.getItem('userID')
+      return storedID || '' // Default to an empty string if no userID is found
+    }
+    return ''
   })
   const [searchUsers, setusers] = useState([])
 
   useEffect(() => {
-    if (userID) {
-      localStorage.setItem('userID', userID)
-    } else {
-      localStorage.removeItem('userID')
+    if (typeof window !== 'undefined') {
+      if (userID) {
+        localStorage.setItem('userID', userID)
+      } else {
+        localStorage.removeItem('userID')
+      }
     }
   }, [userID])
 
@@ -48,6 +55,7 @@ export const ContextProvider = ({ children }: { children: ReactNode }) => {
     </UserContext.Provider>
   )
 }
+
 export const useUserContext = () => {
   const context = useContext(UserContext)
   if (!context) {
