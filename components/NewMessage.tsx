@@ -19,7 +19,7 @@ const NewMessage = () => {
     }
   }
   return (
-    <div className="bg-white border-t border-gray-300 flex items-center gap-2  sticky bottom-0">
+    <div className="bg-white border-t border-gray-300 flex items-center gap-4 px-2 rounded-lg  sticky bottom-0">
       <div className="flex items-center gap-2">
         <AddImageInMessage />
       </div>
