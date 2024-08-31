@@ -1,10 +1,10 @@
 import React from 'react'
-import { SheetContent, SheetTrigger } from './ui/sheet'
-import { Sheet } from 'lucide-react'
+import { Sheet, SheetContent, SheetTrigger } from './ui/sheet'
+
 import { GiHamburgerMenu } from 'react-icons/gi'
 import UserList from './Chat/UserList'
 
-const Trigger = () => {
+const MobileView = () => {
   return (
     <div className=" md:hidden px-1 py-1 mt-1">
       <Sheet>
@@ -22,4 +22,4 @@ const Trigger = () => {
   )
 }
 
-export default Trigger
+export default MobileView

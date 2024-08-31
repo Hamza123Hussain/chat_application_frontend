@@ -6,7 +6,8 @@ import ChatList from '@/components/Chat/ChatList'
 import { useUserContext } from '@/utils/Context'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
-import Trigger from '@/components/Trigger'
+import MobileView from '@/components/MobileView'
+
 export default function Home() {
   const { chatID } = useUserContext()
   return (
@@ -18,7 +19,7 @@ export default function Home() {
         <div className="bg-gray-900 w-full    mx-auto min-h-screen  flex flex-col gap-w  shadow-lg">
           {' '}
           <Navbar />
-          <Trigger />
+          <MobileView />
           {chatID ? (
             <ChatList />
           ) : (
