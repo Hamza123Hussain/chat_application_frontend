@@ -4,39 +4,21 @@ import { FaComments } from 'react-icons/fa'
 import UserList from '@/components/Chat/UserList'
 import ChatList from '@/components/Chat/ChatList'
 import { useUserContext } from '@/utils/Context'
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from '@/components/ui/sheet'
-import Image from 'next/image'
-import { GiHamburgerMenu } from 'react-icons/gi'
-
+import Navbar from '@/components/Navbar'
+import Footer from '@/components/Footer'
+import Trigger from '@/components/Trigger'
 export default function Home() {
   const { chatID } = useUserContext()
   return (
     <div className=" bg-gray-900 min-h-screen   ">
-      <div className=" md:hidden p-3">
-        <Sheet>
-          <SheetTrigger>
-            {' '}
-            <div className=" border-white md:hidden  rounded-lg p-1 w-4">
-              <GiHamburgerMenu className="text-white" />
-            </div>{' '}
-          </SheetTrigger>
-          <SheetContent side={'left'} className=" bg-gray-900">
-            <UserList />
-          </SheetContent>
-        </Sheet>
-      </div>
       <div className="flex">
-        <div className=" bg-gray-800 text-white hidden md:block min-h-screen md:w-2/12">
+        <div className=" bg-gray-800 text-white hidden md:block min-h-screen w-52">
           <UserList />
         </div>
-        <div className="bg-gray-900 w-full md:w-10/12 p-4 mx-auto min-h-screen  shadow-lg">
+        <div className="bg-gray-900 w-full    mx-auto min-h-screen  flex flex-col gap-w  shadow-lg">
+          {' '}
+          <Navbar />
+          <Trigger />
           {chatID ? (
             <ChatList />
           ) : (
@@ -48,13 +30,9 @@ export default function Home() {
               </p>
             </div>
           )}
+          <Footer />
         </div>
       </div>
     </div>
   )
 }
-{
-  /* <div className="bg-slate-500 w-1/12 md:w-2/12">
-{/* <UserDetail /> */
-}
-// </div> */}
