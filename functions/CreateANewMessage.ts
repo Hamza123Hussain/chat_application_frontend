@@ -1,3 +1,4 @@
+import { BackendUrl } from '@/utils/SignUpInterface'
 import axios from 'axios'
 interface ErrorResponse {
   error: string
@@ -22,7 +23,7 @@ export const createMessage = async (
     }
     // Send a POST request to the backend API to create a message
     const response = await axios.post(
-      'http://localhost:5000/api/User/NewMessage',
+      `${BackendUrl}/api/User/NewMessage`,
       formData
     )
     // Check if the response status is 200 (success)

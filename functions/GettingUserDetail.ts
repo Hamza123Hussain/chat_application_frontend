@@ -1,10 +1,11 @@
+import { BackendUrl } from '@/utils/SignUpInterface'
 import axios from 'axios'
 
 // Async function to fetch and handle user details
 export const fetchAndHandleUserDetails = async (UserId: string) => {
   try {
     const Response = await axios.get(
-      `http://localhost:5000/api/User/GetUser?userId=${UserId}`
+      `${BackendUrl}/api/User/GetUser?userId=${UserId}`
     )
     if (Response.status === 200) {
       return Response.data

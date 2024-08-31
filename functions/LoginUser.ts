@@ -1,7 +1,8 @@
+import { BackendUrl } from '@/utils/SignUpInterface'
 import axios from 'axios'
 export const HandleLogin = async (inputVal: any) => {
   try {
-    const Response = await axios.post('http://localhost:5000/api/Auth/Login', {
+    const Response = await axios.post(`${BackendUrl}/api/Auth/Login`, {
       inputVal,
     })
     if (Response.status === 200) {

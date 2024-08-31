@@ -4,3 +4,4 @@ export interface InputValues {
   Name: string
   File: File | null
 }
+export const BackendUrl = 'http://localhost:5000'

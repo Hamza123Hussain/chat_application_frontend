@@ -1,6 +1,6 @@
 // utils/handleSubmit.ts
 import axios from 'axios'
-import { InputValues } from '@/utils/SignUpInterface'
+import { BackendUrl, InputValues } from '@/utils/SignUpInterface'
 import { showCustomToast } from './CustomToast'
 
 export const handleSubmit = async (inputVal: InputValues) => {
@@ -13,7 +13,7 @@ export const handleSubmit = async (inputVal: InputValues) => {
     formData.append('password', inputVal.password)
     formData.append('Name', inputVal.Name)
     const response = await axios.post(
-      'http://localhost:5000/api/Auth/Register', // Replace with your actual backend URL
+      `${BackendUrl}/api/Auth/Register`, // Replace with your actual backend URL
       formData
     )
     if (response.status === 200) {
