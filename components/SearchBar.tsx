@@ -2,14 +2,15 @@ import { Getusers } from '@/functions/GetUsersBySearch'
 import { useUserContext } from '@/utils/Context'
 import { Search } from 'lucide-react'
 import React, { useState } from 'react'
+import Loader from './Loader'
 
 const SearchBar = () => {
   const [loading, setloading] = useState(false)
   const { setusers } = useUserContext()
   const [searchterm, setsearch] = useState('')
   const GetPeople = async () => {
-    setloading(true)
     try {
+      setloading(true)
       const data = await Getusers(searchterm)
       if (data) {
         setusers(data)
@@ -21,7 +22,7 @@ const SearchBar = () => {
     }
   }
   if (loading) {
-    return <div className="loader"></div>
+    return <Loader />
   }
   return (
     <div className=" flex gap-2 bg-gray-400 rounded-lg p-1 mb-2 items-center w-full hover:border-2  ">
