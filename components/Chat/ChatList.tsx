@@ -30,7 +30,7 @@ export default function ChatList() {
   }, [MessageFlag, chatID])
 
   return (
-    <div className="flex flex-col justify-between h-full  bg-gray-900 text-white">
+    <div className="flex flex-col justify-between h-full p-2  bg-gray-900 text-white">
       <div className=" overflow-y-auto p-1  space-y-3">
         {messages.map((msg) => (
           <ChatMessage key={msg.MessageID} messageData={msg} />
