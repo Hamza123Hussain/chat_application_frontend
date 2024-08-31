@@ -5,6 +5,7 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { Toaster } from 'react-hot-toast'
 import { ContextProvider } from '@/utils/Context'
+import ConditionalLayout from '@/components/Auth/condtionalLayout'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -23,10 +24,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <ContextProvider>
           {' '}
-          <Navbar />
-          {children}
-          <Toaster />
-          <Footer />
+          <ConditionalLayout>{children}</ConditionalLayout>{' '}
         </ContextProvider>
       </body>
     </html>
