@@ -1,6 +1,6 @@
 'use client'
 import Image from 'next/image'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import CurrentUser from './User/CurrentUser'
 import { useUserContext } from '@/utils/Context'
@@ -14,8 +14,13 @@ const Navbar = () => {
     }
   }, [userID])
   const Router = useRouter()
+  const pathname = usePathname()
   return (
-    <div className="p-2 flex justify-between items-center bg-[#121212] shadow-lg ">
+    <div
+      className={`p-2 flex justify-between w-full ${
+        pathname == '/' ? 'rounded-lg ' : ''
+      } items-center bg-[#121212] shadow-lg `}
+    >
       <div className="flex gap-3 items-center">
         <Image
           src={'/chat.png'}
