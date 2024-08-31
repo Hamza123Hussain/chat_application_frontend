@@ -30,11 +30,8 @@ export default function ChatList() {
   }, [MessageFlag, chatID])
 
   return (
-    <div className="flex flex-col justify-between h-full bg-gray-900 text-white">
-      <div
-        className="flex-1 overflow-y-auto p-4 space-y-4"
-        style={{ maxHeight: 'calc(100vh - 160px)' }}
-      >
+    <div className="flex flex-col justify-between h-full  bg-gray-900 text-white">
+      <div className=" overflow-y-auto p-1  space-y-3">
         {messages.map((msg) => (
           <ChatMessage key={msg.MessageID} messageData={msg} />
         ))}
