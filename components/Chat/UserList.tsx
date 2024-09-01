@@ -14,7 +14,7 @@ const UserList: React.FC = () => {
 
   useEffect(() => {
     setloading(true)
-    const socket = io('https://chat-stream-backend.vercel.app', {
+    const socket = io('http://localhost:5000', {
       transports: ['websocket', 'polling'], // Explicitly specify transports
     })
 

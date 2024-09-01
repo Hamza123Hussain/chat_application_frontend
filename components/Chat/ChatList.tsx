@@ -18,7 +18,7 @@ export default function ChatList() {
   }, [messages])
 
   useEffect(() => {
-    const socket = io('https://chat-stream-backend.vercel.app') // Use your backend URL
+    const socket = io('http://localhost:5000') // Use your backend URL
     socket.emit('Chat', chatID)
     socket.on('ChatData', (data) => {
       setmessage(data.messages)
