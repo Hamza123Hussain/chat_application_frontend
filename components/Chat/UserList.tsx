@@ -14,12 +14,25 @@ const UserList: React.FC = () => {
 
   useEffect(() => {
     setloading(true)
-    const socket = io(`${BackendUrl}`)
+    const socket = io('https://chat-stream-backend.vercel.app', {
+      transports: ['websocket', 'polling'], // Explicitly specify transports
+    })
+
+    socket.on('connect_error', (error) => {
+      console.error('Socket.IO connection error:', error)
+    })
+
+    socket.on('error', (error) => {
+      console.error('Socket.IO error:', error)
+    })
+
     socket.emit('UserList', userID)
+
     socket.on('UserListReceived', (data: any) => {
       setChatData(data)
       setloading(false)
     })
+
     return () => {
       if (socket) {
         socket.disconnect()
