@@ -18,7 +18,7 @@ export default function ChatList() {
   }, [messages])
 
   useEffect(() => {
-    const socket = io(`${BackendUrl}`)
+    const socket = io(`http://localhost:5000`)
     socket.emit('Chat', chatID)
     socket.on('ChatData', (data) => {
       setmessage(data.messages)

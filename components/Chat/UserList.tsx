@@ -14,7 +14,7 @@ const UserList: React.FC = () => {
 
   useEffect(() => {
     setloading(true)
-    const socket = io(`${BackendUrl}`)
+    const socket = io(`http://localhost:5000`)
     socket.emit('UserList', userID)
     socket.on('UserListReceived', (data: any) => {
       setChatData(data)
